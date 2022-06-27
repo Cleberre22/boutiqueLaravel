@@ -32,17 +32,17 @@
                             <tbody>
                                 @foreach($products as $product)
                                 <tr>
-                                    <td>{{$produit->id}}</td>
-                                    <td>{{$produit->name}}</td>
-                                    <td>{{$produit->description}}</td>
-                                    <td>{{$produit->categorie->name}}</td>
-                                    <td>{{$produit->price}}</td>
-                                    <td>{{$produit->quantite}}</td>
-                                    <td><input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" name="ahead" value="{{$categorie->ahead}}"></td>
-                                    <td><input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" name="active" value="{{$categorie->active}}"></td>
+                                    <td>{{$product->id}}</td>
+                                    <td>{{$product->name}}</td>
+                                    <td>{{$product->description}}</td>
+                                    <td>{{$product->categorie->name}}</td>
+                                    <td>{{$product->price}}</td>
+                                    <td>{{$product->quantite}}</td>
+                                    <td><input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" name="ahead" value="{{$product->ahead}}"></td>
+                                    <td><input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" name="active" value="{{$product->active}}"></td>
                                     <td>
-                                        <a href="{{ route('produits.edit', $produit->id)}}" class="btn btn-primary btn-sm"">Editer</a>
-                                        <form action=" {{ route('produits.destroy', $produit->id)}}" method="POST" style="display: inline-block">
+                                        <a href="{{ route('products.edit', $product->id)}}" class="btn btn-primary btn-sm"">Editer</a>
+                                        <form action=" {{ route('products.destroy', $product->id)}}" method="POST" style="display: inline-block">
                                             @csrf
                                             @method('DELETE')
                                             <button class="btn btn-danger btn-sm"" type=" submit">Supprimer</button>

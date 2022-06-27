@@ -82,8 +82,9 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
+        $categories = Category::all();
         $product = Product::findOrFail($id);
-        return view('products.edit', compact('product'));
+        return view('products.edit', compact('product', 'categories'));
     }
 
     /**
@@ -104,6 +105,7 @@ class ProductController extends Controller
             'ahead',
             'active'
         ]);
+        Product::findOrFail($id)->categorie()->sync($request->categories);
         Product::whereId($id)->update($updateProduct);
         return redirect()->route('produits.index')
             ->with('success', 'Le produit a été mis à jour avec succès !');
