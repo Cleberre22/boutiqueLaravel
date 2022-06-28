@@ -36,7 +36,7 @@
                                     <td>{{$product->name}}</td>
                                     <td>{{$product->description}}</td>
                                     <td>{{$product->categorie->name}}</td>
-                                    <td>{{$product->price}}</td>
+                                    <td>{{$product->price}} €</td>
                                     <td>{{$product->quantite}}</td>
                                     <td><input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" name="ahead" value="{{$product->ahead}}"></td>
                                     <td><input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" name="active" value="{{$product->active}}"></td>

@@ -21,9 +21,9 @@
                         <form method="post" action="{{ route('products.update', $product->id) }}">
                             @csrf
                             @method('PATCH')
-                            <div class="form-group">
-                                <label>Nom</label>
-                                <input type="text" name="nom" class="form-control" value="{{ $product->name }}">
+                            <div class="mb-3 col-12">
+                                <label for="name" class="form-label">Nom de la catégorie</label>
+                                <input type="text" class="form-control" value="{{$product->name}}" name="name" id="name" aria-describedby="nameHelp">
                             </div>
                             <div class="form-group">
                                 <label>Description</label>
@@ -47,13 +47,13 @@
                             </div>
                             <div class="mb-3 col-6">
                                 <label for="categories" class="form-label">Catégorie</label>
-                                <select class="form-select" name="categories[]" id="categories" aria-describedby="categoriesHelp" multiple="multiple">
+                                <select class="form-select" name="categorie_id" id="categories">
                                     @foreach($categories as $categorie)
                                     <option value="{{ $categorie->id }}">{{ $categorie->name }}</option>
                                     @endforeach
                                 </select>
                             </div>
-                            <button type="submit" class="btn btn-primary  rounded-pill shadow-sm">Mettre à jour</button>
+                            <button type="submit" class="btn btn-primary shadow-sm">Mettre à jour</button>
                         </form>
                         <!-- Fin du formulaire -->
                     </div>

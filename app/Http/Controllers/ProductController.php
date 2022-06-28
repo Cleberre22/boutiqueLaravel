@@ -105,9 +105,9 @@ class ProductController extends Controller
             'ahead',
             'active'
         ]);
-        Product::findOrFail($id)->categorie()->sync($request->categories);
+        Product::findOrFail($id);
         Product::whereId($id)->update($updateProduct);
-        return redirect()->route('produits.index')
+        return redirect()->route('products.index')
             ->with('success', 'Le produit a été mis à jour avec succès !');
     }
 

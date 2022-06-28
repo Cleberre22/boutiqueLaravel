@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ImageProductUploadController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,3 +29,6 @@ require __DIR__.'/auth.php';
 Route::resource('categories', CategoryController::class);
 
 Route::resource('products', ProductController::class);
+
+Route::get('imageProduct', [ImageProductUploadController::class, 'index']);
+Route::post('upload', [ImageProductUploadController::class, 'upload']);
