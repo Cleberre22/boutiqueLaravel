@@ -2,11 +2,11 @@
 @section('content')
 <div class="container py-5">
     <div class="row">
-        <div class="col-lg-10 mx-auto">
+        <div class="col-lg-12 mx-auto">
             <div class="bg-white rounded-lg shadow-sm p-5">
                 <div class="tab-content">
                     <div id="nav-tab-card" class="tab-pane fade show active">
-                        <h3>Liste des produits</h3>
+                        <h3 class="mb-5">Liste des produits</h3>
                         <a href="{{ route('products.create')}}" class="btn btn-primary btn-sm mb-3">Ajouter</a>
                         @if(session()->get('success'))
                         <div class="alert alert-success">
@@ -15,7 +15,7 @@
                         @endif
 
                         <!-- Tableau -->
-                        <table class="table">
+                        <table class="table table-light table-hover text-center align-middle">
                             <thead>
                                 <tr>
                                     <th scope="col">#</th>
@@ -26,7 +26,8 @@
                                     <th scope="col">Quantité</th>
                                     <th scope="col">En avant</th>
                                     <th scope="col">Active</th>
-                                    <th scope="col">Action</th>
+                                    <th scope="col">Image</th>
+                                    <th scope="col"></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -40,6 +41,7 @@
                                     <td>{{$product->quantite}}</td>
                                     <td><input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" name="ahead" value="{{$product->ahead}}"></td>
                                     <td><input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" name="active" value="{{$product->active}}"></td>
+                                    <td><img src="#" width="100"></td>
                                     <td>
                                         <a href="{{ route('products.edit', $product->id)}}" class="btn btn-primary btn-sm"">Editer</a>
                                         <form action=" {{ route('products.destroy', $product->id)}}" method="POST" style="display: inline-block">

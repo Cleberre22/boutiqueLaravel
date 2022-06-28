@@ -46,8 +46,25 @@ class ProductController extends Controller
             'quantite' => 'required',
             'categorie_id' => 'required',
             'ahead',
-            'active'
+            'active',
+            'image' => 'image|nullable|max: 1999',
         ]);
+
+        if ($request->hasFile('image')) {
+            // Get Filename
+            $filenameWithExt = $request->file('image')->getClientOriginalName();
+            // Get just Extension
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+            // Filename To store
+            $extension = $request->file('image')->getClientOriginalExtension();
+            $fileNameToStore = $filename. '_' .time().'.'.$extension;
+            // Upload
+            $request->file('image')->storeAs('public/image', $fileNameToStore);
+        }
+        else {
+            // Else add a dummy image
+            $fileNameToStore = '';
+        }
         
         Product::create([
             'name' => $request->name,
@@ -56,7 +73,8 @@ class ProductController extends Controller
             'quantite' => $request->quantite,
             'categorie_id' => $request->categorie_id,
             'ahead',
-            'active'
+            'active',
+            'image' => $fileNameToStore
         ]);
 
         return redirect()->route('products.index')
@@ -71,7 +89,8 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        //
+        $products = Product::all();
+        return view('products.show',['products'=>$products]);
     }
 
     /**
@@ -103,8 +122,22 @@ class ProductController extends Controller
             'quantite' => 'required',
             'categorie_id' => 'required',
             'ahead',
-            'active'
+            'active',
+            'image' => 'image|nullable|max: 1999'
         ]);
+
+        if ($request->hasFile('image')) {
+            if (Product::findOrFail($id)->image){
+                unlink("storage/image/".Product::findOrFail($id)->image);
+            }
+            $filenameWithExt = $request->file('image')->getClientOriginalName();
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+            $extension = $request->file('image')->getClientOriginalExtension();
+            $fileNameToStore = $filename. '_' .time().'.'.$extension;
+            $request->file('image')->storeAs('public/image', $fileNameToStore);
+            $updateHeroe['image'] = $fileNameToStore;
+        }
+
         Product::findOrFail($id);
         Product::whereId($id)->update($updateProduct);
         return redirect()->route('products.index')
@@ -120,6 +153,9 @@ class ProductController extends Controller
     public function destroy($id)
     {
         $product = Product::findOrFail($id);
+        if (Product::findOrFail($id)->image){
+            unlink("storage/image/".Product::findOrFail($id)->image);
+        }
         $product->delete();
         return redirect('/products')->with('success', 'Produit supprimé avec succès');
     }
