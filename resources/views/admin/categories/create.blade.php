@@ -19,7 +19,7 @@
                         @endif
 
                         <!-- Formulaire -->
-                        <form method="POST" action="{{ route('categories.store') }}">
+                        <form method="POST" action="{{ route('admin.categories.store') }}">
                             @csrf
                             <div class="form-group">
                                 <label>Nom</label>

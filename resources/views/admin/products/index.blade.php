@@ -7,7 +7,7 @@
                 <div class="tab-content">
                     <div id="nav-tab-card" class="tab-pane fade show active">
                         <h3 class="mb-5">Liste des produits</h3>
-                        <a href="{{ route('products.create')}}" class="btn btn-primary btn-sm mb-3">Ajouter</a>
+                        <a href="{{ route('admin.products.create')}}" class="btn btn-primary btn-sm mb-3">Ajouter</a>
                         @if(session()->get('success'))
                         <div class="alert alert-success">
                             {{ session()->get('success') }}
@@ -43,8 +43,8 @@
                                     <td><input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" name="active" value="{{$product->active}}"></td>
                                     <td><img src="/storage/image/{{$product->image}}" alt="" width="100"></td>
                                     <td>
-                                        <a href="{{ route('products.edit', $product->id)}}" class="btn btn-primary btn-sm"">Editer</a>
-                                        <form action=" {{ route('products.destroy', $product->id)}}" method="POST" style="display: inline-block">
+                                        <a href="{{ route('admin.products.edit', $product->id)}}" class="btn btn-primary btn-sm"">Editer</a>
+                                        <form action=" {{ route('admin.products.destroy', $product->id)}}" method="POST" style="display: inline-block">
                                             @csrf
                                             @method('DELETE')
                                             <button class="btn btn-danger btn-sm"" type=" submit">Supprimer</button>

@@ -1,9 +1,10 @@
 <?php
 
+use App\Http\Controllers\Admin\CategoryController as AdminCategoryController;
+use App\Http\Controllers\Admin\ProductController as AdminProductController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
-use App\Http\Controllers\ImageProductUploadController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,5 +31,8 @@ Route::resource('categories', CategoryController::class);
 
 Route::resource('products', ProductController::class);
 
-Route::get('imageProduct', [ImageProductUploadController::class, 'index']);
-Route::post('upload', [ImageProductUploadController::class, 'upload']);
+Route::middleware(['admin'])->name('admin.')->prefix('admin')->group(function () {
+    Route::resource('categories', AdminCategoryController::class);
+    Route::resource('products', AdminProductController::class);
+});
+
