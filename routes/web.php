@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Admin\CategoryController as AdminCategoryController;
 use App\Http\Controllers\Admin\ProductController as AdminProductController;
+use App\Http\Controllers\Admin\IndexController as AdminIndexController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
@@ -27,6 +29,8 @@ Route::get('/dashboard', function () {
 
 require __DIR__.'/auth.php';
 
+Route::resource('home', HomeController::class);
+
 Route::resource('categories', CategoryController::class);
 
 Route::resource('products', ProductController::class);
@@ -34,5 +38,6 @@ Route::resource('products', ProductController::class);
 Route::middleware(['admin'])->name('admin.')->prefix('admin')->group(function () {
     Route::resource('categories', AdminCategoryController::class);
     Route::resource('products', AdminProductController::class);
+    Route::resource('index', AdminIndexController::class);
 });
 
