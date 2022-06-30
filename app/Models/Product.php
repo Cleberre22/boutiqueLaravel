@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Product extends Model
 {
@@ -13,5 +14,15 @@ class Product extends Model
     public function categorie()
     {
         return $this->belongsTo(Category::class);
+    }
+
+    public function promotion(): BelongsToMany
+    {
+        return $this->belongstoMany(
+            Promotion::class,
+            'product_promotion',
+            'product',
+            'promotion'
+        );
     }
 }
