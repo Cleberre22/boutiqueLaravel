@@ -13,12 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('image_products', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->string('path');
-            $table->timestamps();
-        });
+        Schema::table('promotions', function (Blueprint $table) {
+             
+            $table->dropColumn('percentage');
+            // $table->dropColumn(['status', 'another_column']);
+         });
     }
 
     /**
@@ -28,6 +27,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('image_products');
+        Schema::table('promotions', function (Blueprint $table) {
+            $table->integer('percentage');
+      });
     }
 };

@@ -24,13 +24,6 @@
                             @method('PATCH')
                             <div class="mb-3 col-12">
 
-
-
-
-                            
-
-                            
-
                                 <label for="categories" class="form-label">Catégorie du produit</label>
                                 <select class="form-select" name="categorie_id" id="categories">
                                 <option value="{{ $product->categorie->id }}">{{ $product->categorie->name }}</option>
@@ -38,12 +31,6 @@
                                     <option value="{{ $categorie->id }}">{{ $categorie->name }}</option>
                                     @endforeach
                                 </select>
-
-
-
-
-
-
 
                             </div>
                             <div class="mb-3 col-12 form-group">
@@ -73,7 +60,7 @@
 
                             <div class="mb-3 col-12">
                                 <label for="image" class="form-label">Image du produit</label>
-                                <input type="file" class="form-control" name="image" id="image" value="{{ $product->image }}"">
+                                <input type="file" class="form-control" name="image" id="image" value="{{ $product->image }}">
                             </div>
 
                             <div class=" col-sm-6 form-check form-switch">

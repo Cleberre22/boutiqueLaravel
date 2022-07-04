@@ -23,9 +23,8 @@
                                     <th scope="col">Description</th>
                                     <th scope="col">Date de départ</th>
                                     <th scope="col">Date de fin</th>
-                                    <th scope="col">Nouveau prix</th>
-                                    <th scope="col">Pourcentage</th>
                                     <th scope="col">Image</th>
+                                    <th scope="col">Produit</th>
                                     <th scope="col"></th>
                                 </tr>
                             </thead>
@@ -36,10 +35,11 @@
                                     <td>{{$promotion->name}}</td>
                                     <td>{{$promotion->description}}</td>
                                     <td>{{$promotion->start_date}}</td>
-                                    <td>{{$promotion->end_date}}</td>
-                                    <td>{{$promotion->price_promo}}</td>
-                                    <td>{{$promotion->percentage}}</td>
+                                    <td>{{$promotion->end_date}}</td>    
                                     <td><img src="/storage/image/{{$promotion->image}}" alt="" width="100"></td>
+                                    <td>@foreach($promotion->product as $product)
+                                                    <span class="me-2">{{$product->name}}</span>
+                                        @endforeach</td> 
                                     <td>
                                         <a href="{{ route('admin.promotions.edit', $promotion->id)}}" class="btn btn-primary btn-sm"">Editer</a>
                                         <form action=" {{ route('admin.promotions.destroy', $promotion->id)}}" method="POST" style="display: inline-block">

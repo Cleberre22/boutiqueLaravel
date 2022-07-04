@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Product;
 use App\Models\Promotion;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 
 class PromotionController extends Controller
@@ -46,8 +47,6 @@ class PromotionController extends Controller
             'description' => 'required',
             'start_date' => 'required',
             'end_date' => 'required',
-            'price_promo' => 'required',
-            'percentage' => 'required',
             'image' => 'image|nullable|max: 1999',
         ]);
 
@@ -66,15 +65,20 @@ class PromotionController extends Controller
             // Else add a dummy image
             $fileNameToStore = '';
         }
-        Promotion::create([
+        $promotion = Promotion::create([
             'name' => $request->name,
             'description' => $request->description,
             'start_date' => $request->start_date,
             'end_date' => $request->end_date,
-            'price_promo' => $request->price_promo,
-            'percentage' => $request->percentage,
             'image' => $fileNameToStore
         ]);
+
+        $products = $request->products;
+        for ($i = 0; $i < count($products); $i++) {
+            $product = Product::find($products[$i]);
+            $promotion->product()->attach($product);
+          }
+      
 
         return redirect()->route('admin.promotions.index')
         ->with('success', 'Promotion ajouté avec succès !');
@@ -97,8 +101,13 @@ class PromotionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id, Request $request)
     {
+        $products = DB::table('products')
+        ->join('product_promotion', 'products.id', '=', 'product_promotion.product')
+        ->get()
+        ->toArray();
+
         $products = Product::all();
         $promotion = Promotion::findOrFail($id);
         return view('admin.promotions.edit', compact('products', 'promotion'));
@@ -118,8 +127,6 @@ class PromotionController extends Controller
             'description' => 'required',
             'start_date' => 'required',
             'end_date' => 'required',
-            'price_promo' => 'required',
-            'percentage' => 'required',
             'image' => 'image|nullable|max: 1999',
         ]);
 
@@ -135,6 +142,7 @@ class PromotionController extends Controller
             $updateHeroe['image'] = $fileNameToStore;
         }
 
+        Promotion::findOrFail($id)->product()->sync($request->products);
         Promotion::findOrFail($id);
         Promotion::whereId($id)->update($updatePromotion);
         return redirect()->route('admin.promotions.index')

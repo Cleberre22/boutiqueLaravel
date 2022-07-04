@@ -13,11 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('products', function (Blueprint $table) {
-
-            $table->dropColumn('imageProduct_id');
-            // $table->dropColumn(['imageProduct_id', 'another_column']);
-        });
+        Schema::table('promotions', function (Blueprint $table) {
+             
+            $table->dropColumn('price_promo');
+            // $table->dropColumn(['status', 'another_column']);
+         });
     }
 
     /**
@@ -27,8 +27,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('products', function (Blueprint $table) {
-            $table->integer('imageProduct_id');
-        });
+        Schema::table('promotions', function (Blueprint $table) {
+            $table->integer('price_promo');
+      });
     }
 };

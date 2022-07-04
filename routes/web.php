@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\CategoryController as AdminCategoryController;
 use App\Http\Controllers\Admin\ProductController as AdminProductController;
 use App\Http\Controllers\Admin\IndexController as AdminIndexController;
 use App\Http\Controllers\Admin\PromotionController as AdminPromotionController;
+use App\Http\Controllers\Admin\PivotController as AdminPivotController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -44,5 +45,6 @@ Route::middleware(['admin'])->name('admin.')->prefix('admin')->group(function ()
     Route::resource('products', AdminProductController::class);
     Route::resource('index', AdminIndexController::class);
     Route::resource('promotions', AdminPromotionController::class);
+    Route::resource('pivot', AdminPivotController::class);
 });
 

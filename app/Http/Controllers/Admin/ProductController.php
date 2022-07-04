@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Product;
 use App\Models\Category;
+use App\Models\Promotion;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 
@@ -19,6 +20,18 @@ class ProductController extends Controller
         $products = Product::all();
         $categories = Category::all();
         return view('admin.products.index', compact('products'));
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function inPromo()
+    {
+        $products = Product::with('promotions')->get();
+        $promotions = Promotion::all();
+        return view('admin.products.inpromo', compact('promotions', 'products'));
     }
 
     /**

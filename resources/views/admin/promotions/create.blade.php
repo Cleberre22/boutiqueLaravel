@@ -21,6 +21,7 @@
                         <!-- Formulaire -->
                         <form method="POST" action="{{ route('admin.promotions.store') }}" enctype="multipart/form-data">
                             @csrf
+    
                             <div class="mb-3 col-12 form-group">
                                 <label>Nom</label>
                                 <input type="text" name="name" class="form-control">
@@ -45,22 +46,6 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="mb-3 row">
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label><span class="hidden-xs">Nouveau prix</span></label>
-                                        <div class="input-group">
-                                            <input type="number" name="price_promo" class="form-control">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label>Pourcentage</label>
-                                        <input type="number" name="percentage" class="form-control">
-                                    </div>
-                                </div>
-                            </div>
                             <div class="mb-3 col-12">
                                 <label for="image" class="form-label">Image de la promotion</label>
                                 <input type="file" class="form-control" name="image" id="image" aria-describedby="imageHelp">
@@ -70,17 +55,13 @@
                             <div class="mb-3 col-12">
                             @foreach($products as $product)
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                <input class="form-check-input" type="checkbox" value="{{ $product->id }}" id="flexCheckDefault" name="products[]">
                                 <label class="form-check-label" for="flexCheckDefault">
                                 {{$product->name}}
                                 </label>
                             </div>
                             @endforeach
                             </div>
-
-
-
-
                             <button type="submit" class="btn btn-primary shadow-sm my-3"> Ajouter un produit </button>
                         </form>
                         <!-- Fin du formulaire -->
