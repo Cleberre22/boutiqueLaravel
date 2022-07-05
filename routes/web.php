@@ -1,15 +1,15 @@
 <?php
 
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\ProductController;
-use App\Http\Controllers\PromotionController;
-use App\Http\Controllers\Admin\CategoryController as AdminCategoryController;
-use App\Http\Controllers\Admin\ProductController as AdminProductController;
-use App\Http\Controllers\Admin\IndexController as AdminIndexController;
-use App\Http\Controllers\Admin\PromotionController as AdminPromotionController;
-use App\Http\Controllers\Admin\PivotController as AdminPivotController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CartController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\PromotionController;
+use App\Http\Controllers\Admin\IndexController as AdminIndexController;
+use App\Http\Controllers\Admin\ProductController as AdminProductController;
+use App\Http\Controllers\Admin\CategoryController as AdminCategoryController;
+use App\Http\Controllers\Admin\PromotionController as AdminPromotionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,7 +23,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
 
 Route::get('/dashboard', function () {
@@ -45,6 +45,6 @@ Route::middleware(['admin'])->name('admin.')->prefix('admin')->group(function ()
     Route::resource('products', AdminProductController::class);
     Route::resource('index', AdminIndexController::class);
     Route::resource('promotions', AdminPromotionController::class);
-    Route::resource('pivot', AdminPivotController::class);
 });
 
+Route::resource('panier', 'CartController')->only(['index', 'store', 'update', 'destroy']);

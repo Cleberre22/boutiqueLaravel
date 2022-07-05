@@ -23,11 +23,15 @@ class ProductController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id, Request $request, Product $produit)
     {
-        return view('products.show', ['product' => Product::findOrFail($id)]);
+        $product = Product::findOrFail($id);
+        // if($produit->active || $request->user()->admin) {
+            return view('products.show', compact('product'));
+        
+        return redirect(route('products.index'));
     }
 }

@@ -7,6 +7,14 @@
     <script src="https://kit.fontawesome.com/3c26004a01.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
     <title>Boutique Laravel</title>
+    <!-- Styles -->
+    <link href="{{ asset('css/style.css') }}" type="text/css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+
+    <!-- Scripts -->
+    <script src="{{ asset('js/app.js') }}" defer></script>
+    <!-- Scripts -->
+    <script src="{{ asset('js/app.js') }}"></script>
 </head>
 
 <body>
@@ -23,6 +31,8 @@
             <a class="py-2 d-none d-md-inline-block" href="#">Tour</a>
             <a class="py-2 d-none d-md-inline-block" href="{{ url('/products') }}">Produits</a>
             <a class="py-2 d-none d-md-inline-block" href="#">Features</a>
+
+            
             <a class="py-2 d-none d-md-inline-block" href="#">Enterprise</a>
             <a class="py-2 d-none d-md-inline-block" href="#">Support</a>
             @auth
@@ -48,6 +58,7 @@
     </header>
 
     <div class="mb-3">
+        <div class="mb-5"></div>
         @yield('content')
     </div>
 
