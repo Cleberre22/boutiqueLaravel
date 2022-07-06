@@ -22,9 +22,8 @@ use App\Http\Controllers\Admin\PromotionController as AdminPromotionController;
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-});
+Route::resource('/', HomeController::class);
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');

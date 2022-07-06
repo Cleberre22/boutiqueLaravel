@@ -53,6 +53,7 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
+        
         $request->validate([
             'name' => 'required',
             'price' => 'required',
@@ -63,6 +64,20 @@ class ProductController extends Controller
             'active',
             'image' => 'image|nullable|max: 1999',
         ]);
+       
+        if (!empty($request->active)){
+            $request->active = true;
+        }
+        else {
+            $request->active = false;
+        };
+
+        if (!empty($request->ahead)){
+            $request->ahead = true;
+        }
+        else {
+            $request->ahead = false;
+        };
 
         if ($request->hasFile('image')) {
             // Get Filename
@@ -86,8 +101,8 @@ class ProductController extends Controller
             'price' => $request->price,
             'quantite' => $request->quantite,
             'categorie_id' => $request->categorie_id,
-            'ahead',
-            'active',
+            'ahead' => $request->ahead,
+            'active' => $request->active,
             'image' => $fileNameToStore
         ]);
 

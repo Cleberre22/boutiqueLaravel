@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use index;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -18,6 +17,6 @@ class HomeController extends Controller
     {
         $products = Product::all();
         // $products = Product::whereActive(true)->get();
-        return view('home', compact('products'));
+        return view('home.index', compact('products'));
     }
 }

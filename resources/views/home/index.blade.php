@@ -7,7 +7,7 @@
  
       @foreach($products as $product)
       <a href="{{ route('products.show', $product->id)}}"</a>
-        <div class="card">
+        <div class="card mb-3">
           <div class="card-image">
             @if($product->quantity)
               <a href="#">

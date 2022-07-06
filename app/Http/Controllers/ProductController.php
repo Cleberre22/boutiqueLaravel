@@ -19,7 +19,7 @@ class ProductController extends Controller
         $categories = Category::all();
         return view('products.index', compact('products'));
     }
-    
+
     /**
      * Display the specified resource.
      *
@@ -29,9 +29,10 @@ class ProductController extends Controller
     public function show($id, Request $request, Product $produit)
     {
         $product = Product::findOrFail($id);
-        // if($produit->active || $request->user()->admin) {
+        if ($produit->active || $request->user()->admin) {
             return view('products.show', compact('product'));
-        
-        return redirect(route('products.index'));
+
+            return redirect(route('products.index'));
+        }
     }
 }
