@@ -64,11 +64,11 @@
                             </div>
 
                             <div class=" col-sm-6 form-check form-switch">
-                                <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" name="ahead" checked>
+                                <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" name="ahead" value="{{ $product->ahead }}">
                                 <label class="form-check-label" for="flexSwitchCheckChecked">En avant</label>
                             </div>
                             <div class="col-sm-6 form-check form-switch">
-                                <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" name="active" checked>
+                                <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" name="active" value="{{ $product->active }}">
                                 <label class="form-check-label" for="flexSwitchCheckChecked">Active</label>
                             </div>
 

@@ -40,6 +40,7 @@
                                     <td>{{$product->price}} €</td>
                                     <td>{{$product->quantite}}</td>
                                     <td><input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" name="ahead" value="{{$product->ahead}}"></td>
+                                   
                                     <td><input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" name="active" value="{{$product->active}}"></td>
                                     <td><img src="/storage/image/{{$product->image}}" alt="" width="100"></td>
                                     <td>
@@ -51,6 +52,7 @@
                                         </form>
                                     </td>
                                 </tr>
+                                
                                 @endforeach
 
                             </tbody>

@@ -151,9 +151,23 @@ class ProductController extends Controller
             'quantite' => 'required',
             'categorie_id' => 'required',
             'ahead',
-            'active',
+            'active' => 'required',
             'image' => 'image|nullable|max: 1999'
         ]);
+
+        if (!empty($request->active)){
+            $request->active = true;
+        }
+        else {
+            $request->active = false;
+        };
+
+        if (!empty($request->ahead)){
+            $request->ahead = true;
+        }
+        else {
+            $request->ahead = false;
+        };
 
         if ($request->hasFile('image')) {
             // if (Product::findOrFail($id)->image){
@@ -164,7 +178,7 @@ class ProductController extends Controller
             $extension = $request->file('image')->getClientOriginalExtension();
             $fileNameToStore = $filename. '_' .time().'.'.$extension;
             $request->file('image')->storeAs('public/image', $fileNameToStore);
-            $updateHeroe['image'] = $fileNameToStore;
+            $updateP['image'] = $fileNameToStore;
         }
 
         Product::findOrFail($id);
