@@ -9,15 +9,15 @@
       <a href="{{ route('products.show', $product->id)}}"</a>
         <div class="card mb-3">
           <div class="card-image">
-            @if($product->quantity)
+            @if($product->quantite)
               <a href="#">
             @endif
               <img src="/storage/image/{{$product->image}}">
-            @if($product->quantity) </a> @endif
+            @if($product->quantite) </a> @endif
           </div>          
           <div class="card-content center-align">
             <p>{{ $product->name }}</p>
-            @if($product->quantity)
+            @if($product->quantite)
               <p><strong>{{ number_format($product->price, 2, ',', ' ') }} € TTC</strong></p>
             @else
               <p class="red-text"><strong>Produit en rupture de stock</strong></p>
